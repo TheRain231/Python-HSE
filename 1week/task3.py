@@ -1,24 +1,29 @@
-# https://leetcode.com/problems/subarrays-with-k-different-integers/
+"""
+leetcode.com/problem-list/string/
+url: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+"""
 
 
 class Solution:
-    def subarraysWithKDistinct(self, nums: list[int], k: int) -> int:
-        def f(x):
-            pos = [0] * len(nums)
-            count = {}
-            j = 0
-            for i in range(len(nums)):
-                count[nums[i]] = count.get(nums[i], 0) + 1
-                while len(count) > x:
-                    count[nums[j]] = count.get(nums[j], 0) - 1
-                    if count[nums[j]] == 0:
-                        count.pop(nums[j])
-                    j += 1
-                pos[i] = j
-            return pos
-
-        pos1, pos2 = f(k - 1), f(k)
-        answer = 0
-        for i in range(len(pos1)):
-            answer += pos1[i] - pos2[i]
-        return answer
+    def longestValidParentheses(self, s: str) -> int:
+        stack = []
+        binArray = [0] * len(s)
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append((s[i], i))
+            else:
+                if len(stack) > 0 and stack[-1][0] == "(":
+                    binArray[stack[-1][1]] = 1
+                    binArray[i] = 1
+                    stack.pop(-1)
+                else:
+                    stack.append((s[i], i))
+        ans = 0
+        cur = 0
+        for i in binArray:
+            if i == 1:
+                cur += 1
+                ans = max(ans, cur)
+            else:
+                cur = 0
+        return ans

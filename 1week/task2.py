@@ -1,4 +1,7 @@
-# https://leetcode.com/problems/longest-substring-without-repeating-characters/solutions/3649636/3-method-s-c-java-python-beginner-friendly/
+"""
+leetcode.com/problem-list/string/
+url: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+"""
 
 
 class Solution:
